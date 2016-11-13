@@ -1,50 +1,38 @@
+//Silvia Zou APCS1
+//This code will remove the word "bread" from a string and will split it at the 
+//places where they were removed or at the places where there is a space.
+
 import java.util.Arrays;
 
 public class StringSplitRunner{
-	public static void main(String[] args) {
-		String string = "bacon pineapple bread ham chese lettuce bread tomatos mayo";
+	public static void main(String[] args){
+		String string = "bacon pineapplebread hamcheeselettucebreadtomatoesmayo";
 		String splitWord = "bread";
-		String[] splitArray = removeBread(string, splitWord);
-		System.out.println(Arrays.toString(splitArray));
-		String[] spaceSplitArray = splitSpaces(string);
-		System.out.println(Arrays.toString(spaceSplitArray));
-		//It's a method that acts on a string, <StringName>.split(<String sp>);
-		//Where sp is the string where the string splits
-		//And it returns an array
-		// Example: "I like apples!".split(" "); 
-		//		it will split at spaces and return an array of ["I","like","apples!"]
-		// Example 2: "I really like really red apples"split("really")
-		//		it will split at the word "really" and return an array of ["I "," like "," apples!"]
-		
-		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
-		
-		
-		//Your task:
-		/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
-		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
-		 * What if it's a fancy sandwich with multiple pieces of bread?
-		*/
-		
-		
-		//Your task pt 2:
-		/*Write a method that take in a string like "apples pineapples bread lettus tomato bacon mayo ham bread cheese" describing a sandwich
-		 * use String.split to split up the sandwich at the spaces, " ", and return what's in the middle of the sandwich and ignores what's on the outside
-		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
-		*/
+		//removes bread from string
+		System.out.println(Arrays.toString(removeBread(string, splitWord)));
+		//Checks if the string contains spaces
+		if(string.indexOf(" ") >= 1){
+			System.out.println(Arrays.toString(removeSpaces(string, splitWord)));
+		}
 	} 
+	
+	//Method returns the string split at the word bread.
 	public static String[] removeBread(String string, String splitWord){
-		java.lang.String[] splitArray = string.split(splitWord);
-		return splitArray;
+		return (string.split(splitWord)); 
 	}
-	public static String[] splitSpaces(String string){
-		String[] noBread = removeBread(string, "bread");
-		String[] withoutBread = new String[noBread.length];
-		if (noBread.length>=1){
-			for (int i = 0; i <= noBread.length - 1; i++){
-				withoutBread[i] = (noBread[i]);
+	
+	//Method returns the string without bread and without spaces.
+	public static String[] removeSpaces(String string, String splitWord){
+		String[] noBread = removeBread(string, splitWord);
+		String noBreadString = "";
+		for(int i = 0; i < noBread.length; i++){
+			if(string.indexOf(" ") == 0){
+				noBreadString += (noBread[i].substring(1, noBread[i].length()));
+			}else{
+				noBreadString += noBread[i];
 			}
 		}
-		//withoutBread = string.split(" ");
-		return withoutBread;
+		String[] noSpace = (noBreadString).split(" ");
+		return noSpace; 
 	}
 }

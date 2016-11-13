@@ -1,0 +1,48 @@
+import java.util.Arrays;
+
+public class StringSplitRunner{
+	public static void main(String[] args) {
+		String string = "bacon pineapple bread ham cheese lettuce bread tomatoes mayo";
+		String splitWord = "bread";
+		//splitSpaces(string, splitWord);
+		System.out.println(Arrays.toString(removeBread(string, splitWord)));
+		//(breadSplitArray));
+		System.out.println(Arrays.toString(removeSpaces(string, splitWord)));
+		//System.out.println(Arrays.toString(spaceSplitArray));
+		//It's a method that acts on a string, <StringName>.split(<String sp>);
+		//Where sp is the string where the string splits
+		//And it returns an array
+		// Example: "I like apples!".split(" "); 
+		//		it will split at spaces and return an array of ["I","like","apples!"]
+		// Example 2: "I really like really red apples"split("really")
+		//		it will split at the word "really" and return an array of ["I "," like "," apples!"]
+		
+		//play around with String.split! what happens if you "I reallyreally like apples".split("really") ?
+		
+		
+		//Your task:
+		/*Write a method that take in a string like "applespineapplesbreadlettustomatobaconmayohambreadcheese" describing a sandwich
+		 * use String.split to split up the sandwich by the word "bread" and return what's in the middle of the sandwich and ignores what's on the outside
+		 * What if it's a fancy sandwich with multiple pieces of bread?
+		*/
+		
+		
+		//Your task pt 2:
+		/*Write a method that take in a string like "apples pineapples bread lettus tomato bacon mayo ham bread cheese" describing a sandwich
+		 * use String.split to split up the sandwich at the spaces, " ", and return what's in the middle of the sandwich and ignores what's on the outside
+		 * Again, what if it's a fancy sandwich with multiple pieces of bread?
+		*/
+	} 
+	public static String[] removeBread(String string, String splitWord){
+		return (string.split(splitWord)); 
+	}
+	public static String[] removeSpaces(String string, String splitWord){
+		String[] noBread = removeBread(string, splitWord);
+		String noBreadString = "";
+		for(int i = 0; i < noBread.length; i++){
+			noBreadString += (noBread[i].substring(1, noBread[i].length()));
+		}
+		String[] noSpace = (noBreadString).split(" ");
+		return noSpace; 
+	}
+}
